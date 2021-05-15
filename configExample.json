@@ -1,0 +1,46 @@
+{
+    "rankups": [{
+        "rankupName": "Citizen",
+        "requirements": [{
+            "type": "rankRequirement",
+            "value": "wanderer"
+        }, {
+            "type": "greaterThenStatistic",
+            "field": "playTime",
+            "value": 108000
+        }, {
+            "type": "greaterThenStatistic",
+            "field": ["blocksPlaced", "blocksDestroyed"],
+            "value": 19080
+        }, {
+            "type": "greaterThenStatistic",
+            "field": "money",
+            "value": 10
+        }],
+        "actions": [{
+            "type": "command",
+            "value": "jperms user %uuid% group set citizen"
+        }, {
+            "type": "broadcast",
+            "value": "&6%username% &bHas ranked up to Citizen"
+        }]
+    }, {
+        "rankupName": "GoldenCitizen",
+        "requirements": [{
+            "type": "rankRequirement",
+            "value": "citizen"
+        }, {
+            "type": "greaterThenStatistic",
+            "field": "playTime",
+            "value": 360000
+        }],
+        "actions": [{
+            "type": "command",
+            "value": "jperms user %uuid% group set trusted"
+        }, {
+            "type": "broadcast",
+            "value": "&6%username% &bHas ranked up to Trusted"
+        }]
+    }],
+    "checkFrequency": 120
+}

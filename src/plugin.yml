@@ -1,0 +1,7 @@
+name: AutomaticRankup
+author: JohnyMuffin
+version: 1.0.0
+main: com.johnymuffin.autorankup.beta.AutomaticRankup
+softdepend:
+  - JStats
+  - JPerms
