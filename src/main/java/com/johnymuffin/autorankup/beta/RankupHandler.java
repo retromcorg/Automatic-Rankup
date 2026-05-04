@@ -1,12 +1,12 @@
 package com.johnymuffin.autorankup.beta;
 
-import com.johnymuffin.jperms.beta.JohnyPerms;
 import com.johnymuffin.jstats.beta.JStats;
 import com.johnymuffin.jstats.beta.PPlayer;
 import com.johnymuffin.jstats.core.simplejson.JSONArray;
 import com.johnymuffin.jstats.core.simplejson.JSONObject;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.retromc.retrobridge.bridge.permission.PermissionBridge;
 
 import java.util.UUID;
 import java.util.logging.Level;
@@ -82,12 +82,8 @@ public class RankupHandler {
                     plugin.logger(Level.WARNING, "Field value or field missing from rankRequirement: " + requirement.toJSONString());
                     return false;
                 }
-                String currentRank = JohnyPerms.getJPermsAPI().getUser(uuid).getGroup().getName();
-                if (currentRank == null || currentRank.trim().isEmpty()) {
-                    plugin.logger(Level.WARNING, "Unable to get the rank of player " + bukkitPlayer.getName() + ".");
-                    return false;
-                }
-                return String.valueOf(requirement.get("value")).equalsIgnoreCase(currentRank);
+                PermissionBridge permissionBridge = plugin.getPermissionBridge();
+                return permissionBridge.isInGroup(uuid, String.valueOf(requirement.get("value")));
 
             case "greaterThenStatistic":
                 if (!requirement.containsKey("value") || !requirement.containsKey("field")) {

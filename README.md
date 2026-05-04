@@ -1,2 +1,2 @@
 # Automatic-Rankup
-A plugin that interacts with Johny Stats to rankup players based on stats
+A plugin that interacts with Johny Stats to rank up players based on stats.

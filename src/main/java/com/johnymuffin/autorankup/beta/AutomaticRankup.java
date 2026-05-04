@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.retromc.retrobridge.bridge.permission.PermissionBridge;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -25,6 +26,7 @@ public class AutomaticRankup extends JavaPlugin {
 
     private JStats jStats;
     private RankupHandler[] rankupHandlers;
+    private RetroBridgeAccess retroBridgeAccess;
 
 
     @Override
@@ -43,6 +45,16 @@ public class AutomaticRankup extends JavaPlugin {
         }
 
         jStats = (JStats) Bukkit.getServer().getPluginManager().getPlugin("JStats");
+
+        retroBridgeAccess = new RetroBridgeAccess();
+        if (!retroBridgeAccess.isAvailable()) {
+            log.info("}---------------ERROR---------------{");
+            log.info("This Plugin Requires RetroBridge");
+            log.info("}---------------ERROR---------------{");
+            Bukkit.getServer().getPluginManager().disablePlugin(plugin);
+            return;
+        }
+
         config = new ARConfig(new File(plugin.getDataFolder(), "config.json"));
         commandSender = new ARCommandSender(Bukkit.getServer());
 
@@ -101,5 +113,9 @@ public class AutomaticRankup extends JavaPlugin {
 
     public JStats getjStats() {
         return jStats;
+    }
+
+    public PermissionBridge getPermissionBridge() {
+        return retroBridgeAccess.getPermissionBridge();
     }
 }

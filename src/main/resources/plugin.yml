@@ -1,7 +1,7 @@
 name: AutomaticRankup
 author: JohnyMuffin
-version: 1.0.0
+version: ${project.version}
 main: com.johnymuffin.autorankup.beta.AutomaticRankup
-softdepend:
+depend:
   - JStats
-  - JPerms
+  - RetroBridge

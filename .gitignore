@@ -50,8 +50,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
-
-libs/
+target/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -222,3 +221,6 @@ modules.xml
 hs_err_pid*
 
 # End of https://www.gitignore.io/api/java,intellij,intellij+all,intellij+iml
+!libs/
+!libs/*.jar
+/libs/
